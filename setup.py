@@ -173,7 +173,7 @@ setup(
     description='fasttext Python bindings',
     long_description=_get_readme(),
     ext_modules=ext_modules,
-    url='https://github.com/facebookresearch/fastText',
+    url='https://github.com/getchar49/LangIdenFT',
     license='MIT',
     classifiers=[
         'Development Status :: 3 - Alpha',

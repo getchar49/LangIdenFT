@@ -508,12 +508,15 @@ void FastText::getSentenceVector(std::istream& in, fasttext::Vector& svec) {
     while (iss >> word) {
       getWordVector(vec, word);
       real norm = vec.norm();
+      std::cout << vec << std::endl;
+      std::cout << norm << std::endl;
       if (norm > 0) {
         vec.mul(1.0 / norm);
         svec.addVector(vec);
         count++;
       }
     }
+    std::cout << svec << std::endl;
     if (count > 0) {
       svec.mul(1.0 / count);
     }
