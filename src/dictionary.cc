@@ -382,11 +382,13 @@ int32_t Dictionary::getLine(
   std::vector<int32_t> word_hashes;
   std::string token;
   int32_t ntokens = 0;
-
+  std::ofstream myfile;
+  myfile.open ("/content/smt2.txt");
   reset(in);
   words.clear();
   labels.clear();
   while (readWord(in, token)) {
+    myfile << token << std::endl;
     uint32_t h = hash(token);
     int32_t wid = getId(token, h);
     entry_type type = wid < 0 ? getType(token) : getType(wid);

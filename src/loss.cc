@@ -303,6 +303,9 @@ void HierarchicalSoftmaxLoss::dfs(
 SoftmaxLoss::SoftmaxLoss(std::shared_ptr<Matrix>& wo) : Loss(wo) {}
 
 void SoftmaxLoss::computeOutput(Model::State& state) const {
+  std::ofstream myfile;
+  myfile.open("/content/out_loss.txt");
+  myfile << "Softmax loss\n";
   Vector& output = state.output;
   output.mul(*wo_, state.hidden);
   real max = output[0], z = 0.0;

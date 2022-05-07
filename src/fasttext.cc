@@ -19,6 +19,7 @@
 #include <string>
 #include <thread>
 #include <vector>
+#include <fstream>
 
 namespace fasttext {
 
@@ -489,10 +490,17 @@ bool FastText::predictLine(
 
 void FastText::getSentenceVector(std::istream& in, fasttext::Vector& svec) {
   svec.zero();
+  std::ofstream myfile;
+  myfile.open ("/content/smt.txt");
+  myfile << "Get sentence vector\n";
+
   if (args_->model == model_name::sup) {
+    
+   
     std::vector<int32_t> line, labels;
     dict_->getLine(in, line, labels);
     for (int32_t i = 0; i < line.size(); i++) {
+      myfile << line[i] << std::endl;
       addInputVector(svec, line[i]);
     }
     if (!line.empty()) {
@@ -508,8 +516,8 @@ void FastText::getSentenceVector(std::istream& in, fasttext::Vector& svec) {
     while (iss >> word) {
       getWordVector(vec, word);
       real norm = vec.norm();
-      std::cout << vec << std::endl;
-      std::cout << norm << std::endl;
+      myfile << vec << std::endl;
+      myfile << norm << std::endl;
       if (norm > 0) {
         vec.mul(1.0 / norm);
         svec.addVector(vec);
