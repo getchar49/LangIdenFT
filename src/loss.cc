@@ -66,6 +66,9 @@ void Loss::predict(
     real threshold,
     Predictions& heap,
     Model::State& state) const {
+  std::ofstream myfile;
+  myfile.open("/content/predict.txt");
+  myfile << "Predict\n";
   computeOutput(state);
   findKBest(k, threshold, heap, state.output);
   std::sort_heap(heap.begin(), heap.end(), comparePairs);
@@ -115,6 +118,9 @@ real BinaryLogisticLoss::binaryLogistic(
 }
 
 void BinaryLogisticLoss::computeOutput(Model::State& state) const {
+  std::ofstream myfile;
+  myfile.open("/content/out_loss2.txt");
+  myfile << "Binary loss\n";
   Vector& output = state.output;
   output.mul(*wo_, state.hidden);
   int32_t osz = output.size();
