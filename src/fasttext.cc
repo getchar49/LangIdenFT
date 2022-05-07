@@ -456,6 +456,9 @@ void FastText::predict(
     const std::vector<int32_t>& words,
     Predictions& predictions,
     real threshold) const {
+		std::ofstream myfile;
+  myfile.open("/content/fast_pred.txt");
+  myfile << "Fast predict\n";
   if (words.empty()) {
     return;
   }

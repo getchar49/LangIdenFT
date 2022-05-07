@@ -50,6 +50,9 @@ void Model::computeHidden(const std::vector<int32_t>& input, State& state)
 }
 
 void Model::predict(
+	std::ofstream myfile;
+	myfile.open("/content/model_pred.txt");
+	myfile << "Model predict\n";
     const std::vector<int32_t>& input,
     int32_t k,
     real threshold,
